@@ -18,7 +18,7 @@ function OverviewExpenses() {
   function expensePressHandler() {}
   return (
     <Tab.Navigator
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
         headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
         headerTintColor: "white",
         tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
@@ -28,10 +28,12 @@ function OverviewExpenses() {
             icon="add"
             size={24}
             color={tintColor}
-            onPress={expensePressHandler}
+            onPress={() => {
+              navigation.navigate("ManageExpenses");
+            }}
           />
         ),
-      }}
+      })}
     >
       <Tab.Screen
         name="RecentExpenses"
