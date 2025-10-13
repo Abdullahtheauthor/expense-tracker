@@ -13,7 +13,9 @@ function ManageExpenses({ route, navigation }) {
   }, [navigation, isEditing]);
 
   function deleteExpenseHandler() {}
-  function cancelButtonHandler() {}
+  function cancelButtonHandler() {
+    navigation.goBack();
+  }
   function confirmButtonHandler() {}
   return (
     <View style={styles.container}>
