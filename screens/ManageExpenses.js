@@ -1,6 +1,7 @@
 import { Text } from "react-native";
-function ManageExpenses() {
-  return <Text>Manage Expenses Screen</Text>;
+function ManageExpenses({ route }) {
+  const editedExpenseId = route.params.expenseId;
+  return <Text>Manage Expenses Screen {editedExpenseId}</Text>;
 }
 
 export default ManageExpenses;
