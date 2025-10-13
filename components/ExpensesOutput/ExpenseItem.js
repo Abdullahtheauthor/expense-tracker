@@ -3,8 +3,18 @@ import { GlobalStyles } from "../../constants/styles";
 import { getFormattedDate } from "../../util/date";
 
 function ExpenesItem({ description, amount, date }) {
+  function expensePressHandler() {}
   return (
-    <Pressable>
+    <Pressable
+      onPress={expensePressHandler}
+      style={({ pressed }) => pressed && styles.pressed}
+      android_ripple={{
+        color: "rgba(0, 0, 0, 0.2)", // Color of the ripple
+        borderless: false, // Whether the ripple should extend beyond the bounds
+        // radius: 700, // Radius of the ripple effect
+        foreground: false, // Display ripple in the foreground
+      }}
+    >
       <View style={styles.expenseItem}>
         <View>
           <Text style={[styles.textBase, styles.description]}>
@@ -55,6 +65,9 @@ const styles = StyleSheet.create({
   amount: {
     color: GlobalStyles.colors.primary500,
     fontWeight: "bold",
+  },
+  pressed: {
+    opacity: 0.7,
   },
 });
 
