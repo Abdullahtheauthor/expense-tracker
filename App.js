@@ -15,7 +15,6 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function OverviewExpenses() {
-  function expensePressHandler() {}
   return (
     <Tab.Navigator
       screenOptions={({ navigation }) => ({
