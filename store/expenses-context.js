@@ -170,9 +170,9 @@ const ExpensesContextProvider = ({ children }) => {
   };
 
   return (
-    <ExpensesContextProvider.Provider value={value}>
+    <ExpensesContext.Provider value={value}>
       {children}
-    </ExpensesContextProvider.Provider>
+    </ExpensesContext.Provider>
   );
 };
 
