@@ -3,8 +3,12 @@ import { StyleSheet, View } from "react-native";
 import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
 import Button from "../components/UI/Button";
+import { ExpensesContext } from "../store/expenses-context";
+import { useContext } from "react";
+
 function ManageExpenses({ route, navigation }) {
   const editedExpenseId = route.params?.expenseId;
+  const expenseCtx = useContext(ExpensesContext);
   const isEditing = !!editedExpenseId;
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -12,7 +16,10 @@ function ManageExpenses({ route, navigation }) {
     });
   }, [navigation, isEditing]);
 
-  function deleteExpenseHandler() {}
+  function deleteExpenseHandler() {
+    expenseCtx.deleteExpense(editedExpenseId);
+    navigation.goBack();
+  }
   function cancelButtonHandler() {
     navigation.goBack();
   }
