@@ -23,7 +23,22 @@ function ManageExpenses({ route, navigation }) {
   function cancelButtonHandler() {
     navigation.goBack();
   }
-  function confirmButtonHandler() {}
+  function confirmButtonHandler() {
+    if (isEditing) {
+      expenseCtx.updateExpense(editedExpenseId, {
+        description: "test",
+        amount: 19.99,
+        date: new Date(),
+      });
+    } else {
+      expenseCtx.addExpense({
+        description: "test addedddddd",
+        amount: 19.99,
+        date: new Date(),
+      });
+    }
+    navigation.goBack();
+  }
   return (
     <View style={styles.container}>
       <View style={styles.buttons}>
