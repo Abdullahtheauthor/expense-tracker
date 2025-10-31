@@ -5,6 +5,7 @@ import { GlobalStyles } from "../constants/styles";
 import Button from "../components/UI/Button";
 import { ExpensesContext } from "../store/expenses-context";
 import { useContext } from "react";
+import ExpenseForm from "../components/manageExpense/ExpenseForm";
 
 function ManageExpenses({ route, navigation }) {
   const editedExpenseId = route.params?.expenseId;
@@ -41,6 +42,7 @@ function ManageExpenses({ route, navigation }) {
   }
   return (
     <View style={styles.container}>
+      <ExpenseForm></ExpenseForm>
       <View style={styles.buttons}>
         <Button onpress={confirmButtonHandler} style={styles.button}>
           {isEditing ? "Update" : "Add"}
