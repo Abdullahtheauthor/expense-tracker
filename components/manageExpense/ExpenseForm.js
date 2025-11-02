@@ -1,14 +1,26 @@
 import { StyleSheet, Text, View } from "react-native";
 import Input from "./Input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../UI/Button";
 
-function ExpenseForm({ onCancel, onSubmit, sumbitButtonLabel }) {
+function ExpenseForm({ onCancel, onSubmit, sumbitButtonLabel, defaultValues }) {
   const [inputValues, setInputValues] = useState({
-    amount: "",
-    date: "",
-    description: "",
+    amount: defaultValues ? defaultValues.amount.toString() : "",
+    date: defaultValues ? defaultValues.date.toISOString().slice(0, 10) : "",
+    description: defaultValues ? defaultValues.description : "",
   });
+
+  //wrong way, it will render indefinitely
+  // if (sumbitButtonLabel === "Update") {
+  //   setInputValues(defaultValues);
+  // }
+
+  //another way to put default value in the inputs depending on the sumbitButtonLabel
+  // useEffect(() => {
+  //   if (sumbitButtonLabel === "Update" && defaultValues) {
+  //     setInputValues(defaultValues);
+  //   }
+  // }, [sumbitButtonLabel, defaultValues]);
   function inputChangedHandler(inputIdentifier, enteredValue) {
     setInputValues((currentInputValues) => {
       return { ...currentInputValues, [inputIdentifier]: enteredValue };
@@ -38,6 +50,7 @@ function ExpenseForm({ onCancel, onSubmit, sumbitButtonLabel }) {
             onChangeText: inputChangedHandler.bind(this, "amount"), // use bind to force js to have a first argument that I specified and make the default entered values as a second argument
             placeholder: "59.9$",
             value: inputValues.amount,
+            // defaultValue: "Hello",
           }}
           style={styles.allSpace}
         />

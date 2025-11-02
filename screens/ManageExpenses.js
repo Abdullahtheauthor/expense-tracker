@@ -32,21 +32,18 @@ function ManageExpenses({ route, navigation }) {
     }
     navigation.goBack();
   }
+  const selectedExpense = expenseCtx.expenses.find(
+    (expense) => expense.id === editedExpenseId
+  );
   return (
     <View style={styles.container}>
       <ExpenseForm
         onCancel={cancelButtonHandler}
         sumbitButtonLabel={isEditing ? "Update" : "Add"}
         onSubmit={confirmButtonHandler}
+        defaultValues={selectedExpense}
       ></ExpenseForm>
-      {/* <View style={styles.buttons}>
-        <Button onpress={confirmButtonHandler} style={styles.button}>
-          {isEditing ? "Update" : "Add"}
-        </Button>
-        <Button mode="flat" onpress={cancelButtonHandler} style={styles.button}>
-          cancel
-        </Button>
-      </View> */}
+
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton
