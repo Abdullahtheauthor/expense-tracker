@@ -8,8 +8,14 @@ function ExpenseForm() {
     date: "",
     description: "",
   });
-  function inputChangedHandler(enteredValue) {
-    setInputValues(() => {});
+  function inputChangedHandler(inputIdentifier, enteredValue) {
+    setInputValues((currentInputValues) => {
+      return { ...currentInputValues, [inputIdentifier]: enteredValue };
+      // 🧠 [inputIdentifier] makes the key dynamic — JS replaces it with the variable's value.
+      // e.g. if inputIdentifier = "amount", this becomes { amount: enteredValue }
+      // Reminder: the brackets [] tell JS to *use the variable's value* as the property name,
+      // not the literal text "inputIdentifier".
+    });
   }
   return (
     <View style={styles.form}>
@@ -19,8 +25,9 @@ function ExpenseForm() {
           label="Amount"
           textInputconfig={{
             keyboardType: "decimal-pad",
-            onChangeText: inputChangedHandler,
+            onChangeText: inputChangedHandler.bind(this, "amount"), // use bind to force js to have a first argument that I specified and make the default entered values as a second argument
             placeholder: "59.9$",
+            value: inputValues.amount,
           }}
           style={styles.allSpace}
         />
@@ -28,7 +35,8 @@ function ExpenseForm() {
           label="Date"
           textInputconfig={{
             placeholder: "YYYY-MM-DD",
-            onChangeText: inputChangedHandler,
+            onChangeText: inputChangedHandler.bind(this, "date"),
+            value: inputValues.date,
           }}
           style={styles.allSpace}
         />
@@ -37,7 +45,8 @@ function ExpenseForm() {
         label="Description"
         textInputconfig={{
           multiline: true,
-          onChangeText: inputChangedHandler,
+          onChangeText: inputChangedHandler.bind(this, "description"),
+          value: inputValues.description,
           // autoCorrect: falses   //default is true
         }}
       />
