@@ -1,10 +1,22 @@
 import ExpensesOutput from "../components/ExpensesOutput/ExpensesOutput";
 import { ExpensesContext } from "../store/expenses-context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getDaeMinusDays } from "../util/date";
+import { fetchExpense } from "../util/http";
 
 function RecentExpenses() {
   const expenseCtx = useContext(ExpensesContext);
+  // const [fetchedExpenses, setFetchedExpenses] = useState([]);
+  useEffect(() => {
+    async function getExpenses() {
+      const expenses = await fetchExpense();
+      console.log("my_expenses", expenses);
+
+      // setFetchedExpenses(expenses);
+      expenseCtx.setExpense(expenses);
+    }
+    getExpenses();
+  }, []);
   const recentExpenses = expenseCtx.expenses.filter((expense) => {
     const today = new Date();
     const date7DaysAgo = getDaeMinusDays(today, 7);
