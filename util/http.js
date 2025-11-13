@@ -26,6 +26,10 @@ export async function fetchExpense(expenseData) {
   return expenses;
 }
 
-// export function deleteExpense(id) {
-//   axios.post(BASIC_URL + "/expense.json", expenseData);
-// }
+export function updateExpense(id, updatedExpense) {
+  return axios.put(BASIC_URL + `/expense/${id}.json`, updatedExpense);
+}
+
+export function deleteExpense(id) {
+  return axios.delete(BASIC_URL + `/expense/${id}.json`);
+}

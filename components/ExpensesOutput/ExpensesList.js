@@ -4,7 +4,7 @@ import ExpenesItem from "./ExpenseItem";
 function renderExpenseItem(itemData) {
   return <ExpenesItem {...itemData.item}></ExpenesItem>;
 }
-function ExpenesList({ expenses }) {
+function ExpensesList({ expenses }) {
   return (
     <FlatList
       data={expenses}
@@ -14,4 +14,4 @@ function ExpenesList({ expenses }) {
   );
 }
 
-export default ExpenesList;
+export default ExpensesList;
