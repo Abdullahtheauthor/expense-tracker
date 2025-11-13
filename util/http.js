@@ -3,8 +3,10 @@ import axios from "axios";
 const BASIC_URL =
   "https://expense-tracker-app-197b1-default-rtdb.europe-west1.firebasedatabase.app/";
 
-export function storeExpense(expenseData) {
-  axios.post(BASIC_URL + "/expense.json", expenseData);
+export async function storeExpense(expenseData) {
+  const response = await axios.post(BASIC_URL + "/expense.json", expenseData);
+  const id = response.data.name;
+  return id;
 }
 
 export async function fetchExpense(expenseData) {
@@ -23,3 +25,7 @@ export async function fetchExpense(expenseData) {
   }
   return expenses;
 }
+
+// export function deleteExpense(id) {
+//   axios.post(BASIC_URL + "/expense.json", expenseData);
+// }
