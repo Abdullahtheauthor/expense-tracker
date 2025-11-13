@@ -133,8 +133,8 @@ export const ExpensesContext = createContext({
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD":
-      const id = new Date().toString() + Math.random().toString();
-      return [{ ...action.payload, id: id }, ...state];
+      // const id = new Date().toString() + Math.random().toString();
+      return [{ ...action.payload }, ...state];
     case "UPDATE":
       const expenseUpdatedIndex = state.findIndex(
         (expense) => action.payload.id === expense.id
