@@ -147,7 +147,8 @@ const reducer = (state, action) => {
     case "DELETE":
       return state.filter((expense) => expense.id !== action.payload);
     case "SET":
-      return action.payload;
+      const inverted = action.payload.reverse();
+      return inverted;
     default:
       return state;
   }
