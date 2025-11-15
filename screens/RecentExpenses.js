@@ -26,18 +26,9 @@ function RecentExpenses() {
     }
     getExpenses();
   }, []);
-  // function confirmHanlder() {
-  //   setError(null);
-  // }
+
   if (error && !isFetching) {
-    return (
-      <ErrorOverlay
-        message={error}
-        onConfirm={() => {
-          setError(null);
-        }}
-      />
-    );
+    return <ErrorOverlay message={error} />;
   }
   if (isFetching) {
     return <LoadingOverlay></LoadingOverlay>;
